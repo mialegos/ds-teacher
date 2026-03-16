@@ -109,6 +109,7 @@ export default function TableShowcase() {
             </Table>
           </div>
         </section>
+
       </div>
     </div>
   );

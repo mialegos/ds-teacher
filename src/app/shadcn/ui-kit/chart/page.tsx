@@ -53,11 +53,11 @@ const negativeData = [
 ];
 
 const pieData = [
-  { name: "Chrome", value: 275, fill: "#f97316" },
-  { name: "Safari", value: 200, fill: "#3b82f6" },
-  { name: "Firefox", value: 187, fill: "#8b5cf6" },
-  { name: "Edge", value: 173, fill: "#ef4444" },
-  { name: "Other", value: 90, fill: "#eab308" },
+  { name: "Chrome", value: 275, fill: "#00b330" },
+  { name: "Safari", value: 200, fill: "#0089ff" },
+  { name: "Firefox", value: 187, fill: "#c952de" },
+  { name: "Edge", value: 173, fill: "#ff8f00" },
+  { name: "Other", value: 90, fill: "#ff000b" },
 ];
 
 const radarData = [
@@ -70,14 +70,14 @@ const radarData = [
 ];
 
 const radialData = [
-  { name: "Chrome", value: 275, fill: "#f97316" },
-  { name: "Safari", value: 200, fill: "#3b82f6" },
-  { name: "Firefox", value: 187, fill: "#8b5cf6" },
-  { name: "Edge", value: 173, fill: "#ef4444" },
-  { name: "Other", value: 90, fill: "#eab308" },
+  { name: "Chrome", value: 275, fill: "#00b330" },
+  { name: "Safari", value: 200, fill: "#0089ff" },
+  { name: "Firefox", value: 187, fill: "#c952de" },
+  { name: "Edge", value: 173, fill: "#ff8f00" },
+  { name: "Other", value: 90, fill: "#ff000b" },
 ];
 
-const COLORS = ["#f97316", "#3b82f6", "#8b5cf6", "#ef4444", "#eab308"];
+const COLORS = ["#00b330", "#0089ff", "#c952de", "#ff8f00", "#ff000b"];
 
 function DotLegend({
   items,
@@ -140,8 +140,8 @@ function ChartCard({
 }
 
 const defaultLegend = [
-  { color: "#f97316", label: "Desktop" },
-  { color: "#3b82f6", label: "Mobile" },
+  { color: "#00b330", label: "Desktop" },
+  { color: "#0089ff", label: "Mobile" },
 ];
 
 export default function ChartShowcasePage() {
@@ -170,8 +170,8 @@ export default function ChartShowcasePage() {
                   tickFormatter={(v) => v.slice(0, 3)}
                 />
                 <Tooltip />
-                <Bar dataKey="desktop" fill="#f97316" radius={[4, 4, 0, 0]} />
-                <Bar dataKey="mobile" fill="#3b82f6" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="desktop" fill="#00b330" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="mobile" fill="#0089ff" radius={[4, 4, 0, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -191,8 +191,8 @@ export default function ChartShowcasePage() {
                   width={40}
                 />
                 <Tooltip />
-                <Bar dataKey="desktop" fill="#f97316" radius={[0, 4, 4, 0]} />
-                <Bar dataKey="mobile" fill="#3b82f6" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="desktop" fill="#00b330" radius={[0, 4, 4, 0]} />
+                <Bar dataKey="mobile" fill="#0089ff" radius={[0, 4, 4, 0]} />
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -200,7 +200,7 @@ export default function ChartShowcasePage() {
           {/* Label */}
           <ChartCard
             title="Bar Chart - Label"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData}>
@@ -212,7 +212,7 @@ export default function ChartShowcasePage() {
                   tickFormatter={(v) => v.slice(0, 3)}
                 />
                 <Tooltip />
-                <Bar dataKey="desktop" fill="#f97316" radius={[4, 4, 0, 0]}>
+                <Bar dataKey="desktop" fill="#00b330" radius={[4, 4, 0, 0]}>
                   <LabelList dataKey="desktop" position="top" className="text-xs fill-foreground" />
                 </Bar>
               </BarChart>
@@ -234,13 +234,13 @@ export default function ChartShowcasePage() {
                 <Bar
                   dataKey="desktop"
                   stackId="a"
-                  fill="#f97316"
+                  fill="#00b330"
                   radius={[0, 0, 0, 0]}
                 />
                 <Bar
                   dataKey="mobile"
                   stackId="a"
-                  fill="#3b82f6"
+                  fill="#0089ff"
                   radius={[4, 4, 0, 0]}
                 />
               </BarChart>
@@ -250,7 +250,7 @@ export default function ChartShowcasePage() {
           {/* Active */}
           <ChartCard
             title="Bar Chart - Active"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <BarChart data={chartData}>
@@ -266,7 +266,7 @@ export default function ChartShowcasePage() {
                   {chartData.map((_, index) => (
                     <Cell
                       key={`cell-${index}`}
-                      fill={index === 1 ? "#f97316" : "#fed7aa"}
+                      fill={index === 1 ? "#00b330" : "#fed7aa"}
                     />
                   ))}
                 </Bar>
@@ -286,8 +286,8 @@ export default function ChartShowcasePage() {
                   tickFormatter={(v) => v.slice(0, 3)}
                 />
                 <Tooltip />
-                <Bar dataKey="desktop" fill="#f97316" radius={4} />
-                <Bar dataKey="mobile" fill="#3b82f6" radius={4} />
+                <Bar dataKey="desktop" fill="#00b330" radius={4} />
+                <Bar dataKey="mobile" fill="#0089ff" radius={4} />
               </BarChart>
             </ResponsiveContainer>
           </ChartCard>
@@ -301,7 +301,7 @@ export default function ChartShowcasePage() {
           {/* Default */}
           <ChartCard
             title="Line Chart"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
@@ -316,7 +316,7 @@ export default function ChartShowcasePage() {
                 <Line
                   type="natural"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -327,7 +327,7 @@ export default function ChartShowcasePage() {
           {/* Linear */}
           <ChartCard
             title="Line Chart - Linear"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
@@ -342,7 +342,7 @@ export default function ChartShowcasePage() {
                 <Line
                   type="linear"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -353,7 +353,7 @@ export default function ChartShowcasePage() {
           {/* Step */}
           <ChartCard
             title="Line Chart - Step"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
@@ -368,7 +368,7 @@ export default function ChartShowcasePage() {
                 <Line
                   type="step"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -391,14 +391,14 @@ export default function ChartShowcasePage() {
                 <Line
                   type="monotone"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   strokeWidth={2}
                   dot={false}
                 />
                 <Line
                   type="monotone"
                   dataKey="mobile"
-                  stroke="#3b82f6"
+                  stroke="#0089ff"
                   strokeWidth={2}
                   dot={false}
                 />
@@ -409,7 +409,7 @@ export default function ChartShowcasePage() {
           {/* Dots */}
           <ChartCard
             title="Line Chart - Dots"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
@@ -424,9 +424,9 @@ export default function ChartShowcasePage() {
                 <Line
                   type="natural"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   strokeWidth={2}
-                  dot={{ r: 4, fill: "#f97316" }}
+                  dot={{ r: 4, fill: "#00b330" }}
                   activeDot={{ r: 6 }}
                 />
               </LineChart>
@@ -436,7 +436,7 @@ export default function ChartShowcasePage() {
           {/* Label */}
           <ChartCard
             title="Line Chart - Label"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <LineChart data={chartData}>
@@ -451,9 +451,9 @@ export default function ChartShowcasePage() {
                 <Line
                   type="natural"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   strokeWidth={2}
-                  dot={{ r: 4, fill: "#f97316" }}
+                  dot={{ r: 4, fill: "#00b330" }}
                 >
                   <LabelList dataKey="desktop" position="top" className="text-xs fill-foreground" offset={10} />
                 </Line>
@@ -470,14 +470,14 @@ export default function ChartShowcasePage() {
           {/* Default */}
           <ChartCard
             title="Area Chart"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="desktopGrad" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#f97316" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#00b330" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#00b330" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -491,7 +491,7 @@ export default function ChartShowcasePage() {
                 <Area
                   type="natural"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   fill="url(#desktopGrad)"
                   strokeWidth={2}
                 />
@@ -502,14 +502,14 @@ export default function ChartShowcasePage() {
           {/* Linear */}
           <ChartCard
             title="Area Chart - Linear"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="desktopGradLinear" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.3} />
-                    <stop offset="95%" stopColor="#f97316" stopOpacity={0} />
+                    <stop offset="5%" stopColor="#00b330" stopOpacity={0.3} />
+                    <stop offset="95%" stopColor="#00b330" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -523,7 +523,7 @@ export default function ChartShowcasePage() {
                 <Area
                   type="linear"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   fill="url(#desktopGradLinear)"
                   strokeWidth={2}
                 />
@@ -534,7 +534,7 @@ export default function ChartShowcasePage() {
           {/* Step */}
           <ChartCard
             title="Area Chart - Step"
-            legendItems={[{ color: "#f97316", label: "Desktop" }]}
+            legendItems={[{ color: "#00b330", label: "Desktop" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <AreaChart data={chartData}>
@@ -549,8 +549,8 @@ export default function ChartShowcasePage() {
                 <Area
                   type="step"
                   dataKey="desktop"
-                  stroke="#f97316"
-                  fill="#f97316"
+                  stroke="#00b330"
+                  fill="#00b330"
                   fillOpacity={0.15}
                   strokeWidth={2}
                 />
@@ -564,12 +564,12 @@ export default function ChartShowcasePage() {
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="stackDesktop" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#f97316" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#f97316" stopOpacity={0.05} />
+                    <stop offset="5%" stopColor="#00b330" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#00b330" stopOpacity={0.05} />
                   </linearGradient>
                   <linearGradient id="stackMobile" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="5%" stopColor="#3b82f6" stopOpacity={0.4} />
-                    <stop offset="95%" stopColor="#3b82f6" stopOpacity={0.05} />
+                    <stop offset="5%" stopColor="#0089ff" stopOpacity={0.4} />
+                    <stop offset="95%" stopColor="#0089ff" stopOpacity={0.05} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -584,7 +584,7 @@ export default function ChartShowcasePage() {
                   type="natural"
                   dataKey="desktop"
                   stackId="1"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   fill="url(#stackDesktop)"
                   strokeWidth={2}
                 />
@@ -592,7 +592,7 @@ export default function ChartShowcasePage() {
                   type="natural"
                   dataKey="mobile"
                   stackId="1"
-                  stroke="#3b82f6"
+                  stroke="#0089ff"
                   fill="url(#stackMobile)"
                   strokeWidth={2}
                 />
@@ -623,8 +623,8 @@ export default function ChartShowcasePage() {
                   type="natural"
                   dataKey="desktop"
                   stackId="1"
-                  stroke="#f97316"
-                  fill="#f97316"
+                  stroke="#00b330"
+                  fill="#00b330"
                   fillOpacity={0.3}
                   strokeWidth={2}
                 />
@@ -632,8 +632,8 @@ export default function ChartShowcasePage() {
                   type="natural"
                   dataKey="mobile"
                   stackId="1"
-                  stroke="#3b82f6"
-                  fill="#3b82f6"
+                  stroke="#0089ff"
+                  fill="#0089ff"
                   fillOpacity={0.3}
                   strokeWidth={2}
                 />
@@ -650,12 +650,12 @@ export default function ChartShowcasePage() {
               <AreaChart data={chartData}>
                 <defs>
                   <linearGradient id="gradDesktopFull" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#f97316" stopOpacity={0.6} />
-                    <stop offset="100%" stopColor="#f97316" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#00b330" stopOpacity={0.6} />
+                    <stop offset="100%" stopColor="#00b330" stopOpacity={0} />
                   </linearGradient>
                   <linearGradient id="gradMobileFull" x1="0" y1="0" x2="0" y2="1">
-                    <stop offset="0%" stopColor="#3b82f6" stopOpacity={0.6} />
-                    <stop offset="100%" stopColor="#3b82f6" stopOpacity={0} />
+                    <stop offset="0%" stopColor="#0089ff" stopOpacity={0.6} />
+                    <stop offset="100%" stopColor="#0089ff" stopOpacity={0} />
                   </linearGradient>
                 </defs>
                 <CartesianGrid strokeDasharray="3 3" />
@@ -669,14 +669,14 @@ export default function ChartShowcasePage() {
                 <Area
                   type="monotone"
                   dataKey="desktop"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   fill="url(#gradDesktopFull)"
                   strokeWidth={2}
                 />
                 <Area
                   type="monotone"
                   dataKey="mobile"
-                  stroke="#3b82f6"
+                  stroke="#0089ff"
                   fill="url(#gradMobileFull)"
                   strokeWidth={2}
                 />
@@ -862,7 +862,7 @@ export default function ChartShowcasePage() {
           {/* Default */}
           <ChartCard
             title="Radar Chart"
-            legendItems={[{ color: "#f97316", label: "Student A" }]}
+            legendItems={[{ color: "#00b330", label: "Student A" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
@@ -871,8 +871,8 @@ export default function ChartShowcasePage() {
                 <Tooltip />
                 <Radar
                   dataKey="A"
-                  stroke="#f97316"
-                  fill="#f97316"
+                  stroke="#00b330"
+                  fill="#00b330"
                   fillOpacity={0.3}
                   strokeWidth={2}
                 />
@@ -883,7 +883,7 @@ export default function ChartShowcasePage() {
           {/* Dots */}
           <ChartCard
             title="Radar Chart - Dots"
-            legendItems={[{ color: "#f97316", label: "Student A" }]}
+            legendItems={[{ color: "#00b330", label: "Student A" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
@@ -892,11 +892,11 @@ export default function ChartShowcasePage() {
                 <Tooltip />
                 <Radar
                   dataKey="A"
-                  stroke="#f97316"
-                  fill="#f97316"
+                  stroke="#00b330"
+                  fill="#00b330"
                   fillOpacity={0.3}
                   strokeWidth={2}
-                  dot={{ r: 4, fill: "#f97316" }}
+                  dot={{ r: 4, fill: "#00b330" }}
                 />
               </RadarChart>
             </ResponsiveContainer>
@@ -906,8 +906,8 @@ export default function ChartShowcasePage() {
           <ChartCard
             title="Radar Chart - Multiple"
             legendItems={[
-              { color: "#f97316", label: "Student A" },
-              { color: "#3b82f6", label: "Student B" },
+              { color: "#00b330", label: "Student A" },
+              { color: "#0089ff", label: "Student B" },
             ]}
           >
             <ResponsiveContainer width="100%" height="100%">
@@ -917,15 +917,15 @@ export default function ChartShowcasePage() {
                 <Tooltip />
                 <Radar
                   dataKey="A"
-                  stroke="#f97316"
-                  fill="#f97316"
+                  stroke="#00b330"
+                  fill="#00b330"
                   fillOpacity={0.2}
                   strokeWidth={2}
                 />
                 <Radar
                   dataKey="B"
-                  stroke="#3b82f6"
-                  fill="#3b82f6"
+                  stroke="#0089ff"
+                  fill="#0089ff"
                   fillOpacity={0.2}
                   strokeWidth={2}
                 />
@@ -937,8 +937,8 @@ export default function ChartShowcasePage() {
           <ChartCard
             title="Radar Chart - Lines Only"
             legendItems={[
-              { color: "#f97316", label: "Student A" },
-              { color: "#3b82f6", label: "Student B" },
+              { color: "#00b330", label: "Student A" },
+              { color: "#0089ff", label: "Student B" },
             ]}
           >
             <ResponsiveContainer width="100%" height="100%">
@@ -948,17 +948,17 @@ export default function ChartShowcasePage() {
                 <Tooltip />
                 <Radar
                   dataKey="A"
-                  stroke="#f97316"
+                  stroke="#00b330"
                   fill="none"
                   strokeWidth={2}
-                  dot={{ r: 3, fill: "#f97316" }}
+                  dot={{ r: 3, fill: "#00b330" }}
                 />
                 <Radar
                   dataKey="B"
-                  stroke="#3b82f6"
+                  stroke="#0089ff"
                   fill="none"
                   strokeWidth={2}
-                  dot={{ r: 3, fill: "#3b82f6" }}
+                  dot={{ r: 3, fill: "#0089ff" }}
                 />
               </RadarChart>
             </ResponsiveContainer>
@@ -967,7 +967,7 @@ export default function ChartShowcasePage() {
           {/* Custom Label */}
           <ChartCard
             title="Radar Chart - Custom Label"
-            legendItems={[{ color: "#8b5cf6", label: "Student A" }]}
+            legendItems={[{ color: "#c952de", label: "Student A" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <RadarChart data={radarData} cx="50%" cy="50%" outerRadius="70%">
@@ -989,8 +989,8 @@ export default function ChartShowcasePage() {
                 <Tooltip />
                 <Radar
                   dataKey="A"
-                  stroke="#8b5cf6"
-                  fill="#8b5cf6"
+                  stroke="#c952de"
+                  fill="#c952de"
                   fillOpacity={0.3}
                   strokeWidth={2}
                 />
@@ -1002,8 +1002,8 @@ export default function ChartShowcasePage() {
           <ChartCard
             title="Radar Chart - Circle Grid"
             legendItems={[
-              { color: "#f97316", label: "Student A" },
-              { color: "#3b82f6", label: "Student B" },
+              { color: "#00b330", label: "Student A" },
+              { color: "#0089ff", label: "Student B" },
             ]}
           >
             <ResponsiveContainer width="100%" height="100%">
@@ -1013,15 +1013,15 @@ export default function ChartShowcasePage() {
                 <Tooltip />
                 <Radar
                   dataKey="A"
-                  stroke="#f97316"
-                  fill="#f97316"
+                  stroke="#00b330"
+                  fill="#00b330"
                   fillOpacity={0.15}
                   strokeWidth={2}
                 />
                 <Radar
                   dataKey="B"
-                  stroke="#3b82f6"
-                  fill="#3b82f6"
+                  stroke="#0089ff"
+                  fill="#0089ff"
                   fillOpacity={0.15}
                   strokeWidth={2}
                 />
@@ -1124,11 +1124,11 @@ export default function ChartShowcasePage() {
           {/* Text (center label) */}
           <ChartCard
             title="Radial Chart - Text"
-            legendItems={[{ color: "#f97316", label: "Visitors" }]}
+            legendItems={[{ color: "#00b330", label: "Visitors" }]}
           >
             <ResponsiveContainer width="100%" height="100%">
               <RadialBarChart
-                data={[{ name: "Visitors", value: 200, fill: "#f97316" }]}
+                data={[{ name: "Visitors", value: 200, fill: "#00b330" }]}
                 cx="50%"
                 cy="50%"
                 innerRadius="60%"
@@ -1140,7 +1140,7 @@ export default function ChartShowcasePage() {
                   dataKey="value"
                   background
                   cornerRadius={10}
-                  fill="#f97316"
+                  fill="#00b330"
                 />
                 <text
                   x="50%"

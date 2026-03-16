@@ -199,7 +199,7 @@
     </div>
   </div>
 
-  {/* Таблица — ОТДЕЛЬНАЯ карточка */}
+  {/* Таблица — ОТДЕЛЬНАЯ карточка, ТОЛЬКО Shadcn Table */}
   <div className="anim-fade-up rounded-xl border border-border bg-white"
     style={{ animationDelay: "120ms" }}>
 
@@ -209,37 +209,28 @@
       {/* фильтры */}
     </div>
 
-    {/* Desktop таблица */}
-    <div className="hidden md:block">
-      {/* Шапка */}
-      <div className="grid grid-cols-[1fr_100px_100px] gap-4 border-t border-border/40 px-5 py-2 text-sm font-medium text-muted-foreground">
-        <span>Имя</span>
-        <span>Уроков</span>
-        <span>Ср. балл</span>
-      </div>
-      {/* Строки */}
-      {teachers.map(t => (
-        <Link key={t.id} href={`/teachers/${t.id}`}
-          className="grid grid-cols-[1fr_100px_100px] gap-4 border-t border-border/40 px-5 py-3 text-sm transition-colors hover:bg-black/[0.03]">
-          <span className="font-medium">{t.name}</span>
-          <span className="tabular-nums">{t.lessons}</span>
-          <span className="font-medium tabular-nums" style={{ color: scoreColor(t.avg) }}>
-            {t.avg}%
-          </span>
-        </Link>
-      ))}
-    </div>
-
-    {/* Mobile карточки */}
-    <div className="flex flex-col gap-3 p-5 md:hidden">
-      {teachers.map(t => (
-        <Link key={t.id} href={`/teachers/${t.id}`}
-          className="rounded-lg border border-border p-3">
-          <p className="font-medium">{t.name}</p>
-          <p className="mt-1 text-sm text-muted-foreground">{t.lessons} уроков · {t.avg}%</p>
-        </Link>
-      ))}
-    </div>
+    <Table>
+      <TableHeader>
+        <TableRow>
+          <TableHead>Имя</TableHead>
+          <TableHead>Уроков</TableHead>
+          <TableHead className="text-right">Ср. балл</TableHead>
+        </TableRow>
+      </TableHeader>
+      <TableBody>
+        {teachers.map(t => (
+          <TableRow key={t.id} className="cursor-pointer"
+            onClick={() => router.push(`/teachers/${t.id}`)}>
+            <TableCell className="font-medium">{t.name}</TableCell>
+            <TableCell>{t.lessons}</TableCell>
+            <TableCell className="text-right font-medium tabular-nums"
+              style={{ color: scoreColor(t.avg) }}>
+              {t.avg}%
+            </TableCell>
+          </TableRow>
+        ))}
+      </TableBody>
+    </Table>
   </div>
 </div>
 ```
@@ -369,6 +360,81 @@
 
 ---
 
+## ЗАПРЕЩЕНО: сырой HTML
+
+**Никогда** не используй нативные HTML-элементы для таблиц, кнопок, инпутов, диалогов и т.д.
+Всегда импортируй Shadcn-компоненты из `@/components/ui/`:
+
+```
+ЗАПРЕЩЕНО                           ПРАВИЛЬНО
+─────────                           ─────────
+<table>, <th>, <td>                 Table, TableHead, TableCell
+<button>                            Button
+<input>                             Input
+<select>                            Select, SelectTrigger, SelectContent
+<dialog>                            Dialog, DialogContent
+```
+
+### Таблицы — ТОЛЬКО через Shadcn Table
+
+```tsx
+import {
+  Table, TableHeader, TableBody, TableRow, TableHead, TableCell,
+} from "@/components/ui/table";
+
+<Table>
+  <TableHeader>
+    <TableRow>
+      <TableHead>Название</TableHead>
+      <TableHead className="text-right">Балл</TableHead>
+    </TableRow>
+  </TableHeader>
+  <TableBody>
+    {items.map((item) => (
+      <TableRow key={item.id}>
+        <TableCell className="font-medium">{item.name}</TableCell>
+        <TableCell className="text-right">{item.score}</TableCell>
+      </TableRow>
+    ))}
+  </TableBody>
+</Table>
+```
+
+### Ссылки в таблицах — чёрные, не зелёные
+
+```
+ЗАПРЕЩЕНО: className="text-primary hover:underline"
+ПРАВИЛЬНО: className="text-foreground hover:underline font-medium"
+```
+
+`text-primary` (зелёный) используется ТОЛЬКО для:
+- CTA-кнопок (`bg-primary text-primary-foreground`)
+- Активных вкладок (`border-primary text-primary`)
+- Иконок активного пункта сайдбара
+
+---
+
+## Цвета диаграмм
+
+Основной цвет для графиков — **зелёный** (совпадает с `--primary`).
+
+| Переменная | Цвет | Использование |
+|---|---|---|
+| `--chart-1` | `#00b330` зелёный | **Основной** — одиночные графики |
+| `--chart-2` | `#0089ff` синий | Вторая серия |
+| `--chart-3` | `#c952de` фиолетовый | Третья серия |
+| `--chart-4` | `#ff8f00` оранжевый | Четвёртая серия |
+| `--chart-5` | `#ff000b` красный | Пятая серия / негатив |
+
+```tsx
+<Line stroke="var(--chart-1)" />
+<ChartContainer config={{ score: { label: "Балл", color: "var(--chart-1)" } }} />
+```
+
+**ЗАПРЕЩЕНО**: hardcoded hex-коды (`#60a5fa`, `#ff8f00`). Только `var(--chart-*)`.
+
+---
+
 ## Чеклист
 
 Перед сдачей страницы проверь:
@@ -380,6 +446,46 @@
 5. ✅ Наборный текст чёрный `text-foreground`, размер `text-base`
 6. ✅ Заголовки карточек: `text-lg font-medium`
 7. ✅ KPI вынесены в отдельную полоску с `kpi-grid`
-8. ✅ Таблицы: строки с `border-t border-border/40`, hover `bg-black/[0.03]`
+8. ✅ Таблицы: **только Shadcn Table**, хедер `font-medium text-foreground`
 9. ✅ Анимации `anim-fade-up` на каждом блоке
 10. ✅ Цвета оценок: green/orange/red по порогам
+11. ✅ Нет сырого HTML (`<table>`, `<th>`, `<td>`, `<button>`)
+12. ✅ Ссылки в таблицах — `text-foreground`, не `text-primary`
+13. ✅ Action-иконки в таблицах — `text-muted-foreground`, не `text-primary`
+14. ✅ Нет `bg-card` — только `bg-white` для карточек
+15. ✅ Нет `text-gray-*`, `bg-gray-*`, `border-gray-*` — только DS-токены
+16. ✅ Прогресс-бары используют `color-mix(in srgb, ${color} 12%, transparent)` для незалитой части
+
+---
+
+## Рендеринг AI-результатов (report-blocks)
+
+Компоненты в `lib/report-blocks/renderer/blocks/` рендерят структурированные данные (JSON) от AI-ядра. На них распространяются **все те же правила DS**.
+
+### Обязательно
+
+- Импортировать Shadcn `Table`, `Button` и т.д. — не использовать raw HTML
+- `bg-white` для карточек, `rounded-xl border border-border`
+- `text-lg font-medium` для заголовков блоков
+- `text-base text-foreground leading-relaxed` для наборного текста
+- `color-mix` для незалитой части прогресс-баров и score-dots
+
+### Шаблон нового блока
+
+```tsx
+"use client";
+
+import type { MyBlock as MyBlockType } from "../../types";
+import { Table, TableBody, TableRow, TableCell } from "@/components/ui/table";
+
+export function MyBlock({ ... }: MyBlockType) {
+  return (
+    <div className="rounded-xl border border-border bg-white p-5 sm:p-6">
+      <h3 className="text-lg font-medium text-foreground">Заголовок</h3>
+      <div className="text-base text-foreground leading-relaxed">
+        {/* контент */}
+      </div>
+    </div>
+  );
+}
+```

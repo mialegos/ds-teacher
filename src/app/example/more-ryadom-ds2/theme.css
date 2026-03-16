@@ -25,12 +25,12 @@
   --ring: hsl(125 100% 35%);
   --radius: 0.8rem;
 
-  /* Charts — shadcn defaults (blue scale) */
-  --chart-1: oklch(0.81 0.1 252);
-  --chart-2: oklch(0.62 0.19 260);
-  --chart-3: oklch(0.55 0.22 263);
-  --chart-4: oklch(0.49 0.22 264);
-  --chart-5: oklch(0.42 0.18 266);
+  /* Charts — green primary */
+  --chart-1: #00b330;
+  --chart-2: #0089ff;
+  --chart-3: #c952de;
+  --chart-4: #ff8f00;
+  --chart-5: #ff000b;
 
   /* Charts — brand palette (from Edtech DS) */
   --chart-green: #00cc00;
