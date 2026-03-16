@@ -112,16 +112,6 @@ const foundations: ItemDef[] = [
   },
 ];
 
-const examples: (ItemDef & { external?: boolean })[] = [
-  {
-    href: "/example/lesson-report",
-    icon: IconReportAnalytics,
-    title: "Описание урока",
-    description: "Полноценный макет отчёта по уроку — все компоненты ДС в деле",
-    external: true,
-  },
-];
-
 const components: ItemDef[] = [
   { href: "/shadcn/ui-kit/accordion", icon: IconList, title: "Accordion", description: "Раскрывающиеся секции контента" },
   { href: "/shadcn/ui-kit/alert", icon: IconAlertTriangle, title: "Alert", description: "Информационные и предупреждающие уведомления" },
@@ -190,31 +180,6 @@ export default function ShadcnUiKitPage() {
           Компоненты на базе Tailwind CSS + shadcn/ui, соответствующие
           дизайн-системе из Figma.
         </p>
-      </div>
-
-      <h2 className="text-sm font-medium text-muted-foreground mb-4">Examples</h2>
-      <div className="grid gap-4 sm:grid-cols-3 mb-10">
-        {examples.map((item) => (
-          <Link
-            key={item.href}
-            href={item.href}
-            {...(item.external ? { target: "_blank", rel: "noopener noreferrer" } : {})}
-            className="group rounded-xl border border-border bg-card p-6 transition-all hover:border-primary hover:shadow-md"
-          >
-            <item.icon
-              size={28}
-              stroke={1.5}
-              className="text-muted-foreground transition-colors group-hover:text-primary"
-            />
-            <h3 className="mt-4 text-lg font-semibold group-hover:text-primary">
-              {item.title}
-              {item.external && <span className="ml-1 text-xs text-muted-foreground">↗</span>}
-            </h3>
-            <p className="mt-1 text-sm text-muted-foreground">
-              {item.description}
-            </p>
-          </Link>
-        ))}
       </div>
 
       <h2 className="text-sm font-medium text-muted-foreground mb-4">Foundations</h2>
