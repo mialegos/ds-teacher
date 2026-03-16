@@ -1,296 +1,385 @@
-# Промпт для сборки проекта на DS v2
+# Дизайн-система DS v2 — Обязательные правила
 
-> Этот документ — инструкция для AI (Cursor, Replit, Claude) и разработчиков.
-> Вставь его как системный промпт или правило, чтобы новые страницы собирались в едином стиле.
+> **КРИТИЧЕСКИ ВАЖНО**: Этот документ описывает ОБЯЗАТЕЛЬНЫЕ правила оформления.
+> Каждое правило содержит готовый код. Копируй и применяй буквально.
 > Живой пример: https://mialegos.github.io/ds-teacher/example/more-ryadom-ds2/
+> Компоненты: https://github.com/mialegos/ds-teacher
 
 ---
 
-## Стек
+## ГЛАВНОЕ ПРАВИЛО
 
-- Next.js 15+ (App Router)
-- Tailwind CSS v4
-- shadcn/ui (Radix UI)
-- Recharts (графики)
-- Lucide React (иконки)
+**Каждый логический блок информации = отдельная белая карточка на сером фоне.**
 
-## Репозиторий с компонентами
+Фон страницы — тёплый серый (`bg-muted`, `#F7F6F3`).
+Контент разбивается на карточки с отступами `mb-5` между ними.
 
-GitHub: https://github.com/mialegos/ds-teacher
-
-Компоненты: `src/components/shadcn/` (45 штук)
-Утилиты: `src/lib/utils.ts` — функция `cn()`
-Тема: `src/app/example/more-ryadom-ds2/theme.css`
+```
+НЕПРАВИЛЬНО: сплошной текст на белом фоне, одна большая простыня
+ПРАВИЛЬНО: каждая секция обёрнута в отдельную белую карточку
+```
 
 ---
 
-## 1. Layout (layout.tsx)
+## Карточка секции
 
-Каждый проект = `layout.tsx` + `page.tsx` + `theme.css`.
-
-### Обёртка
+Каждый блок информации оборачивается в:
 
 ```tsx
-<div data-ds-v2 className="flex min-h-screen bg-background text-foreground">
-  <aside>...</aside>
-  <main className="flex-1 overflow-y-auto bg-muted">
-    <div className="mx-auto max-w-screen-xl">{children}</div>
-  </main>
+<div className="anim-fade-up mb-5 rounded-xl border border-border bg-white p-5 sm:p-6"
+  style={{ animationDelay: "160ms" }}>
+  <h2 className="text-lg font-medium">Заголовок секции</h2>
+  {/* контент */}
 </div>
 ```
 
-### Сайдбар Desktop
-
-```tsx
-<aside
-  onClick={() => setCollapsed(c => !c)}
-  className={`sticky top-0 hidden h-screen shrink-0 flex-col border-r border-sidebar-border bg-sidebar text-sidebar-foreground transition-all duration-200 md:flex ${
-    collapsed ? "w-16 cursor-e-resize" : "w-64 cursor-w-resize"
-  }`}
->
-```
-
-- Клик по пустому месту — сворачивает/разворачивает
-- Ссылки: `e.stopPropagation()` чтобы клик по ним не сворачивал
-- Лого: `h-8 w-8 rounded-md bg-foreground text-background` + название рядом
-- Футер: аватар `h-9 w-9 rounded-full` + имя + роль
-
-### Сайдбар Mobile
-
-```tsx
-<Sheet open={mobileOpen} onOpenChange={setMobileOpen}>
-  <SheetContent side="left" className="w-64 bg-sidebar p-0">
-    <VisuallyHidden.Root><SheetTitle>Навигация</SheetTitle></VisuallyHidden.Root>
-    ...
-  </SheetContent>
-</Sheet>
-```
-
-Кнопка-гамбургер в sticky top bar `h-12`.
-
-### Стили навигации
-
-```
-Активный:  bg-black/[0.06] font-medium text-foreground
-Hover:     hover:bg-black/[0.04] hover:text-foreground
-Иконка:    активная — text-primary, неактивная — text-muted-foreground
-Высота:    h-10, gap-2.5, px-3, text-[15px]
-```
-
-### Иконки навигации
-
-Инлайн SVG, viewBox `0 0 16 16`, пропсы `{ active, size }`.
-Активная: `text-primary`. Заливка: `fillOpacity` для объёма.
+**ЗАПРЕЩЕНО**: `shadow-*`, `rounded-[48px]`, `bg-card`. Только `rounded-xl border border-border bg-white`.
 
 ---
 
-## 2. Страницы (page.tsx)
+## Шаблон: детальная страница (урок, консультация, профиль)
 
-### Обёртка контента
+Вот ТОЧНАЯ структура. Каждая детальная страница ОБЯЗАНА иметь эту разбивку:
+
+```tsx
+<div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 md:px-8 md:py-8">
+
+  {/* 1. ХЛЕБНЫЕ КРОШКИ */}
+  <div className="anim-fade-up mb-4 text-sm text-muted-foreground">
+    <Link href="/lessons" className="hover:text-foreground">Уроки</Link>
+    <span className="mx-1.5">›</span>
+    <span>8а — Физика</span>
+  </div>
+
+  {/* 2. ЗАГОЛОВОК + БЕЙДЖ */}
+  <div className="anim-fade-up mb-6" style={{ animationDelay: "40ms" }}>
+    <div className="flex items-center gap-3">
+      <h1 className="text-2xl font-medium tracking-tight">8а — Параллельное соединение</h1>
+      <span className="rounded-full bg-primary/10 px-2.5 py-0.5 text-xs font-medium text-primary">
+        34/42 (81%)
+      </span>
+    </div>
+    <p className="mt-1 text-sm text-muted-foreground">
+      Учитель: Александр · 03.03.2026, 13:02 · Физика
+    </p>
+  </div>
+
+  {/* 3. KPI-БЛОК (числовые метрики) — отдельная карточка */}
+  <div className="anim-fade-up mb-5 overflow-hidden rounded-xl border border-border bg-white"
+    style={{ animationDelay: "80ms" }}>
+    <div className="kpi-grid">
+      <div className="px-4 py-4 sm:px-5 sm:py-5">
+        <p className="truncate text-2xl font-semibold sm:text-3xl">34/42</p>
+        <p className="mt-1 truncate text-sm text-muted-foreground">Общий балл</p>
+      </div>
+      <div className="px-4 py-4 sm:px-5 sm:py-5">
+        <p className="truncate text-2xl font-semibold sm:text-3xl">81%</p>
+        <p className="mt-1 truncate text-sm text-muted-foreground">Результат</p>
+      </div>
+      <div className="px-4 py-4 sm:px-5 sm:py-5">
+        <p className="truncate text-2xl font-semibold sm:text-3xl">30:30</p>
+        <p className="mt-1 truncate text-sm text-muted-foreground">Длительность</p>
+      </div>
+    </div>
+  </div>
+
+  {/* 4. ИНФОРМАЦИЯ — отдельная карточка */}
+  <div className="anim-fade-up mb-5 rounded-xl border border-border bg-white p-5 sm:p-6"
+    style={{ animationDelay: "160ms" }}>
+    <h2 className="text-lg font-medium">Информация</h2>
+    <div className="mt-3 grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div>
+        <p className="text-sm text-muted-foreground">Предмет/Тема</p>
+        <p className="mt-0.5 text-base text-foreground">Физика / Параллельное соединение</p>
+      </div>
+      <div>
+        <p className="text-sm text-muted-foreground">Тип урока</p>
+        <p className="mt-0.5 text-base text-foreground">Комбинированный</p>
+      </div>
+      <div className="sm:col-span-2">
+        <p className="text-sm text-muted-foreground">Профиль класса</p>
+        <p className="mt-0.5 text-base leading-relaxed text-foreground">
+          8А (13-14 лет). Уровень дисциплины — borderline. Класс активный, шумный.
+        </p>
+      </div>
+    </div>
+  </div>
+
+  {/* 5. ХРОНОЛОГИЯ / ТАЙМЛАЙН — отдельная карточка */}
+  <div className="anim-fade-up mb-5 rounded-xl border border-border bg-white p-5 sm:p-6"
+    style={{ animationDelay: "240ms" }}>
+    <h2 className="mb-4 text-lg font-medium">Хронология урока</h2>
+    <div className="flex flex-col">
+      {timeline.map((t, i) => (
+        <div key={i} className={`flex gap-4 ${i < timeline.length - 1 ? "border-b border-border/40 pb-4 mb-4" : ""}`}>
+          <div className="w-28 shrink-0">
+            <span className="rounded-md bg-muted px-2 py-0.5 text-sm font-medium tabular-nums">
+              {t.time}
+            </span>
+          </div>
+          <div className="min-w-0 flex-1">
+            <p className="text-base font-medium">{t.title}</p>
+            <p className="mt-1 text-base leading-relaxed text-foreground">{t.description}</p>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* 6. ОЦЕНКА ПО КРИТЕРИЯМ — отдельная карточка */}
+  <div className="anim-fade-up mb-5 rounded-xl border border-border bg-white p-5 sm:p-6"
+    style={{ animationDelay: "320ms" }}>
+    <div className="mb-4 flex items-center justify-between">
+      <h2 className="text-lg font-medium">Сводная таблица баллов</h2>
+      <ScoreDonut score={81} size={72} />
+    </div>
+    {/* Заголовок группы критериев */}
+    <p className="mb-2 mt-4 text-xs font-semibold uppercase tracking-wider text-muted-foreground">
+      Блок 1: Структура урока
+    </p>
+    <div className="flex flex-col">
+      {criteria.map((cr, i) => {
+        const pct = (cr.score / cr.max) * 100;
+        const color = pct >= 65 ? "var(--chart-green)" : pct >= 40 ? "var(--chart-orange)" : "var(--chart-red)";
+        return (
+          <div key={i} className="border-b border-border/40 py-3.5">
+            <div className="flex items-baseline justify-between">
+              <p className="text-base font-medium">{cr.name}</p>
+              <span className="text-base font-semibold tabular-nums" style={{ color }}>
+                {cr.score} / {cr.max}
+              </span>
+            </div>
+            <div className="mt-1.5 h-1.5 w-full overflow-hidden rounded-full"
+              style={{ background: `color-mix(in srgb, ${color} 15%, transparent)` }}>
+              <div className="anim-bar-x h-full rounded-full"
+                style={{ width: `${pct}%`, background: color }} />
+            </div>
+            <p className="mt-1.5 text-base leading-relaxed text-foreground">{cr.comment}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+
+  {/* 7. РЕКОМЕНДАЦИИ — отдельная карточка с буллитами */}
+  <div className="anim-fade-up mb-5 rounded-xl border border-border bg-white p-5 sm:p-6"
+    style={{ animationDelay: "400ms" }}>
+    <h2 className="mb-3 text-lg font-medium">Рекомендации</h2>
+    <ul className="flex flex-col gap-2.5">
+      {recommendations.map((r, i) => (
+        <li key={i} className="flex items-start gap-2.5 text-base text-foreground">
+          <span className="mt-[9px] inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-primary" />
+          <span className="leading-relaxed">{r}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+</div>
+```
+
+---
+
+## Шаблон: страница-список (учителя, уроки, классы)
 
 ```tsx
 <div className="px-4 py-6 sm:px-6 md:px-8 md:py-8">
-  {/* секции через gap-5 или mb-5 */}
-</div>
-```
 
-### Секции — белые карточки
+  {/* Заголовок */}
+  <div className="anim-fade-up mb-6">
+    <h1 className="text-3xl font-bold sm:text-4xl">Учителя</h1>
+    <p className="mt-1 text-base text-muted-foreground">67 учителей в системе</p>
+  </div>
 
-```tsx
-<div className="rounded-xl border border-border bg-white p-5 sm:p-6">
-```
+  {/* KPI */}
+  <div className="anim-fade-up mb-5 overflow-hidden rounded-xl border border-border bg-white"
+    style={{ animationDelay: "60ms" }}>
+    <div className="kpi-grid">
+      {/* ... KPI ячейки ... */}
+    </div>
+  </div>
 
-**НЕЛЬЗЯ**: `rounded-[48px]`, `bg-card`, `shadow-sm`. Без теней, без крупных скруглений.
+  {/* Таблица — ОТДЕЛЬНАЯ карточка */}
+  <div className="anim-fade-up rounded-xl border border-border bg-white"
+    style={{ animationDelay: "120ms" }}>
 
----
+    {/* Заголовок таблицы с фильтрами */}
+    <div className="flex items-center justify-between p-5">
+      <h2 className="text-lg font-medium">Все учителя</h2>
+      {/* фильтры */}
+    </div>
 
-## 3. Типографика
-
-| Элемент | Класс |
-|---|---|
-| Заголовок страницы | `text-3xl font-bold sm:text-4xl` |
-| Подзаголовок | `text-base text-muted-foreground` |
-| Заголовок блока | `text-lg font-medium` |
-| Наборный текст | `text-base leading-relaxed text-foreground` (чёрный, 16px) |
-| Мета-информация | `text-sm text-muted-foreground` |
-| KPI значение | `text-2xl sm:text-3xl font-semibold` |
-| KPI подпись | `text-sm text-muted-foreground` |
-| Uppercase-метка | `text-xs font-semibold uppercase tracking-wider text-muted-foreground` |
-
----
-
-## 4. KPI-блок
-
-```tsx
-<div className="overflow-hidden rounded-xl border border-border bg-white">
-  <div className="kpi-grid">
-    {kpis.map(kpi => (
-      <div key={kpi.label} className="px-4 py-4 sm:px-5 sm:py-5">
-        <p className="truncate text-2xl font-semibold sm:text-3xl">{kpi.value}</p>
-        <p className="mt-1 truncate text-sm text-muted-foreground">{kpi.label}</p>
+    {/* Desktop таблица */}
+    <div className="hidden md:block">
+      {/* Шапка */}
+      <div className="grid grid-cols-[1fr_100px_100px] gap-4 border-t border-border/40 px-5 py-2 text-sm font-medium text-muted-foreground">
+        <span>Имя</span>
+        <span>Уроков</span>
+        <span>Ср. балл</span>
       </div>
-    ))}
+      {/* Строки */}
+      {teachers.map(t => (
+        <Link key={t.id} href={`/teachers/${t.id}`}
+          className="grid grid-cols-[1fr_100px_100px] gap-4 border-t border-border/40 px-5 py-3 text-sm transition-colors hover:bg-black/[0.03]">
+          <span className="font-medium">{t.name}</span>
+          <span className="tabular-nums">{t.lessons}</span>
+          <span className="font-medium tabular-nums" style={{ color: scoreColor(t.avg) }}>
+            {t.avg}%
+          </span>
+        </Link>
+      ))}
+    </div>
+
+    {/* Mobile карточки */}
+    <div className="flex flex-col gap-3 p-5 md:hidden">
+      {teachers.map(t => (
+        <Link key={t.id} href={`/teachers/${t.id}`}
+          className="rounded-lg border border-border p-3">
+          <p className="font-medium">{t.name}</p>
+          <p className="mt-1 text-sm text-muted-foreground">{t.lessons} уроков · {t.avg}%</p>
+        </Link>
+      ))}
+    </div>
   </div>
 </div>
 ```
 
-CSS-класс `kpi-grid` определён в `theme.css`: 2 cols → 3 cols (sm) → flex row (lg), разделители через `gap: 1px`.
-
 ---
 
-## 5. Таблицы и списки
-
-### Desktop (hidden md:grid)
+## Шаблон: дашборд
 
 ```tsx
-<div className="grid grid-cols-[...] border-t border-border/40 px-5 py-3 text-sm transition-colors hover:bg-black/[0.03]">
-```
+<div className="px-4 py-6 sm:px-6 md:px-8 md:py-8">
 
-### Mobile (md:hidden)
+  {/* Заголовок */}
+  <div className="anim-fade-up mb-6">
+    <h1 className="text-3xl font-bold sm:text-4xl">Дашборд</h1>
+    <p className="mt-1 text-base text-muted-foreground">Обзор за текущий период</p>
+  </div>
 
-Отдельные карточки `rounded-lg border border-border p-3`.
+  {/* KPI */}
+  <div className="anim-fade-up mb-5 overflow-hidden rounded-xl border border-border bg-white"
+    style={{ animationDelay: "60ms" }}>
+    <div className="kpi-grid">
+      {/* 3-4 KPI ячейки */}
+    </div>
+  </div>
 
-**НЕ** использовать `md:contents`. Делать два отдельных блока.
+  {/* График — ОТДЕЛЬНАЯ карточка */}
+  <div className="anim-fade-up mb-5 rounded-xl border border-border bg-white p-5 sm:p-6"
+    style={{ animationDelay: "120ms" }}>
+    <h2 className="text-lg font-medium">Динамика среднего балла</h2>
+    <div className="mt-4 h-64">
+      {/* Recharts график */}
+    </div>
+  </div>
 
-### Списки с буллитами
+  {/* Две колонки: Лучшие учителя + Последние уроки */}
+  <div className="grid grid-cols-1 gap-5 lg:grid-cols-2">
 
-```tsx
-<li className="flex items-start gap-2.5 text-base text-foreground">
-  <span className="mt-[9px] inline-block h-2.5 w-2.5 shrink-0 rounded-full bg-primary" />
-  <span className="leading-relaxed">{text}</span>
-</li>
-```
+    {/* Лучшие учителя — карточка */}
+    <div className="anim-fade-up rounded-xl border border-border bg-white"
+      style={{ animationDelay: "180ms" }}>
+      <div className="flex items-center justify-between p-5">
+        <h2 className="text-lg font-medium">Лучшие учителя</h2>
+        <Link href="/teachers" className="text-sm text-muted-foreground hover:text-foreground">Все</Link>
+      </div>
+      {items.map(item => (
+        <Link key={item.id} href={`/teachers/${item.id}`}
+          className="flex items-center gap-3 border-t border-border/40 px-5 py-3 transition-colors hover:bg-black/[0.03]">
+          {/* ... */}
+        </Link>
+      ))}
+    </div>
 
----
-
-## 6. Бейджи и статусы
-
-```tsx
-// Положительный (зелёный)
-"bg-primary/10 text-primary"
-
-// Отрицательный (красный)
-"bg-red-50 text-red-700"
-
-// Нейтральный
-"bg-black/[0.06] text-muted-foreground"
-
-// Предупреждение (оранжевый)
-"bg-amber-50 text-amber-700"
-```
-
-Формат: `rounded-full px-2.5 py-0.5 text-xs font-medium`
-
----
-
-## 7. Progress bars
-
-```tsx
-const color = percent >= 65 ? "var(--chart-green)" : percent >= 40 ? "var(--chart-orange)" : "var(--chart-red)";
-
-<div className="h-2 w-full overflow-hidden rounded-full"
-  style={{ background: `color-mix(in srgb, ${color} 15%, transparent)` }}>
-  <div className="anim-progress h-full rounded-full"
-    style={{ width: `${percent}%`, background: color }} />
+    {/* Последние уроки — карточка */}
+    <div className="anim-fade-up rounded-xl border border-border bg-white"
+      style={{ animationDelay: "240ms" }}>
+      {/* аналогичная структура */}
+    </div>
+  </div>
 </div>
 ```
 
 ---
 
-## 8. Score Donut (круговой прогресс)
+## Типографика
 
-```tsx
-function ScoreDonut({ score, size = 64, label }: { score: number; size?: number; label?: string }) {
-  const sw = size > 56 ? 5 : 4;
-  const r = (size - sw) / 2;
-  const circ = 2 * Math.PI * r;
-  const pct = score / 100;
-  const color = score >= 65 ? "var(--chart-green)" : score >= 40 ? "var(--chart-orange)" : "var(--chart-red)";
-  return (
-    <div className="relative shrink-0" style={{ width: size, height: size }}>
-      <svg width={size} height={size}>
-        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke="currentColor" strokeOpacity={0.08} strokeWidth={sw} />
-        <circle cx={size/2} cy={size/2} r={r} fill="none" stroke={color} strokeWidth={sw} strokeLinecap="round"
-          strokeDasharray={`${pct*circ} ${circ}`} transform={`rotate(-90 ${size/2} ${size/2})`} />
-      </svg>
-      <span className="absolute inset-0 flex items-center justify-center font-bold" style={{ color }}>
-        {label ?? `${score}%`}
-      </span>
-    </div>
-  );
-}
-```
+| Элемент | Класс | Пример |
+|---|---|---|
+| Заголовок страницы | `text-3xl font-bold sm:text-4xl` | «Дашборд», «Учителя» |
+| Заголовок блока/карточки | `text-lg font-medium` | «Резюме», «Оценка по критериям» |
+| Наборный текст | `text-base leading-relaxed text-foreground` | Описания, комментарии |
+| Мета-информация | `text-sm text-muted-foreground` | Даты, подписи, метки |
+| Uppercase-метка | `text-xs font-semibold uppercase tracking-wider text-muted-foreground` | «БЛОК 1: СТРУКТУРА» |
+| KPI значение | `text-2xl sm:text-3xl font-semibold` | «67», «81%» |
 
 ---
 
-## 9. Анимации
-
-Каждая секция на странице — `anim-fade-up` с пошаговой задержкой:
-
-```tsx
-<div className="anim-fade-up" style={{ animationDelay: "80ms" }}>...</div>
-<div className="anim-fade-up" style={{ animationDelay: "160ms" }}>...</div>
-<div className="anim-fade-up" style={{ animationDelay: "240ms" }}>...</div>
-```
-
-Шаг: 60–80ms. Доступные классы:
-- `anim-fade-up` — появление снизу
-- `anim-bar-x` — рост полоски по X
-- `anim-bar-y` — рост полоски по Y
-- `anim-progress` — рост progress bar
-- `anim-radar` — появление радара
-- `anim-dot` — появление точки
-- `anim-line-draw` — рисование линии
-
----
-
-## 10. Цвета (theme.css)
+## Цвета
 
 ```css
---primary: hsl(125 100% 35%);          /* зелёный */
---muted: #F7F6F3;                       /* тёплый серый фон */
---sidebar: #F7F6F3;
---border: hsl(240 5.9% 90%);
---foreground: hsl(240 10% 3.9%);        /* почти чёрный */
+--primary: hsl(125 100% 35%);     /* зелёный — основной */
+--muted: #F7F6F3;                  /* тёплый серый — фон страницы */
+--border: hsl(240 5.9% 90%);      /* границы карточек */
+--foreground: hsl(240 10% 3.9%);  /* чёрный текст */
 --muted-foreground: hsl(240 3.8% 46.1%); /* серый текст */
-
 --chart-green: #00cc00;
 --chart-orange: #ff8f00;
 --chart-red: #ff000b;
 ```
 
+Цвет оценки: `≥65% = green`, `≥40% = orange`, `<40% = red`
+
 ---
 
-## 11. Hover-стили
+## Бейджи
 
 ```
-Сайдбар:                hover:bg-black/[0.04]
-Сайдбар активный:       bg-black/[0.06]
-Таблицы/списки:         hover:bg-black/[0.03]
-Карточки:               hover:border-primary hover:shadow-md (опционально)
+Положительный:  bg-primary/10 text-primary
+Отрицательный:  bg-red-50 text-red-700
+Нейтральный:    bg-black/[0.06] text-muted-foreground
+Предупреждение: bg-amber-50 text-amber-700
+Формат:         rounded-full px-2.5 py-0.5 text-xs font-medium
 ```
 
 ---
 
-## 12. Адаптив
+## Анимации
 
-- Grid: `grid-cols-1 sm:grid-cols-2 lg:grid-cols-3`
-- Mobile sidebar: shadcn `Sheet`
-- Текст: `truncate` для длинных значений
-- Отступы: `px-4 py-6 sm:px-6 md:px-8 md:py-8`
+Каждая карточка на странице получает `anim-fade-up` с нарастающей задержкой:
+
+```
+Блок 1: animationDelay: "60ms"
+Блок 2: animationDelay: "120ms"
+Блок 3: animationDelay: "180ms"
+...шаг 60–80ms
+```
 
 ---
 
-## Чеклист перед сдачей страницы
+## Сайдбар
 
-- [ ] Обёртка `data-ds-v2` есть
-- [ ] `theme.css` подключён
-- [ ] Секции — белые карточки `rounded-xl border border-border bg-white`
-- [ ] Нет теней (`shadow-*`) на карточках
-- [ ] Наборный текст: `text-base leading-relaxed text-foreground`
-- [ ] Заголовки блоков: `text-lg font-medium`
-- [ ] KPI через `kpi-grid`
-- [ ] Анимации `anim-fade-up` с шагом 60–80ms
-- [ ] Цвета прогресса: green ≥65, orange ≥40, red <40
-- [ ] Сайдбар: сворачивается, mobile Sheet
-- [ ] Адаптив: отдельные блоки для mobile и desktop таблиц
+- Фон: `bg-sidebar` = `#F7F6F3`
+- Desktop: `w-64`, сворачивается в `w-16` кликом
+- Mobile: shadcn `Sheet` с `side="left"`
+- Активный пункт: `bg-black/[0.06] font-medium text-foreground`
+- Hover: `hover:bg-black/[0.04]`
+- Иконка активного: `text-primary`
+
+---
+
+## Чеклист
+
+Перед сдачей страницы проверь:
+
+1. ✅ Фон страницы — серый (`bg-muted`)
+2. ✅ Каждая секция — **отдельная белая карточка** (`rounded-xl border border-border bg-white`)
+3. ✅ Между карточками `mb-5`
+4. ✅ Нет теней на карточках
+5. ✅ Наборный текст чёрный `text-foreground`, размер `text-base`
+6. ✅ Заголовки карточек: `text-lg font-medium`
+7. ✅ KPI вынесены в отдельную полоску с `kpi-grid`
+8. ✅ Таблицы: строки с `border-t border-border/40`, hover `bg-black/[0.03]`
+9. ✅ Анимации `anim-fade-up` на каждом блоке
+10. ✅ Цвета оценок: green/orange/red по порогам
