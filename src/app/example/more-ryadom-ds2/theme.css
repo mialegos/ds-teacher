@@ -1,0 +1,195 @@
+/*
+ * DS v2 theme — green primary, scoped via [data-ds-v2].
+ * Only applies inside the DS v2 layout wrapper.
+ */
+
+[data-ds-v2] {
+  --background: hsl(0 0% 100%);
+  --foreground: hsl(240 10% 3.9%);
+  --card: hsl(0 0% 100%);
+  --card-foreground: hsl(240 10% 3.9%);
+  --popover: hsl(0 0% 100%);
+  --popover-foreground: hsl(240 10% 3.9%);
+  --primary: hsl(125 100% 35%);
+  --primary-foreground: hsl(0 0% 98%);
+  --secondary: hsl(240 4.8% 95.9%);
+  --secondary-foreground: hsl(240 5.9% 10%);
+  --muted: #F7F6F3;
+  --muted-foreground: hsl(240 3.8% 46.1%);
+  --accent: hsl(125 100% 95%);
+  --accent-foreground: hsl(125 100% 10%);
+  --destructive: hsl(0 84.2% 60.2%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(240 5.9% 90%);
+  --input: hsl(240 5.9% 90%);
+  --ring: hsl(125 100% 35%);
+  --radius: 0.8rem;
+
+  /* Charts — shadcn defaults (blue scale) */
+  --chart-1: oklch(0.81 0.1 252);
+  --chart-2: oklch(0.62 0.19 260);
+  --chart-3: oklch(0.55 0.22 263);
+  --chart-4: oklch(0.49 0.22 264);
+  --chart-5: oklch(0.42 0.18 266);
+
+  /* Charts — brand palette (from Edtech DS) */
+  --chart-green: #00cc00;
+  --chart-green-light: #8df26d;
+  --chart-green-muted: #b7f299;
+  --chart-blue: #0089ff;
+  --chart-blue-light: #66c2ff;
+  --chart-blue-muted: #99d6ff;
+  --chart-red: #ff000b;
+  --chart-red-light: #ff5c52;
+  --chart-red-muted: #ffc7c2;
+  --chart-orange: #ff8f00;
+  --chart-orange-light: #ffb733;
+  --chart-orange-muted: #ffdb99;
+  --chart-purple: #c952de;
+  --chart-purple-light: #d385e4;
+  --chart-purple-muted: #e8c2f1;
+  --chart-yellow: #f5b800;
+  --chart-yellow-light: #ffc933;
+  --chart-yellow-muted: #ffe799;
+
+  /* Shadows */
+  --shadow-2xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-xs: 0 1px 3px 0px hsl(0 0% 0% / 0.05);
+  --shadow-sm: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 1px 2px -1px hsl(0 0% 0% / 0.1);
+  --shadow-md: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 2px 4px -1px hsl(0 0% 0% / 0.1);
+  --shadow-lg: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 4px 6px -1px hsl(0 0% 0% / 0.1);
+  --shadow-xl: 0 1px 3px 0px hsl(0 0% 0% / 0.1), 0 8px 10px -1px hsl(0 0% 0% / 0.1);
+  --shadow-2xl: 0 1px 3px 0px hsl(0 0% 0% / 0.25);
+
+  /* Sidebar — derived from theme base */
+  --sidebar: #F7F6F3;
+  --sidebar-foreground: hsl(240 10% 3.9%);
+  --sidebar-primary: hsl(125 100% 35%);
+  --sidebar-primary-foreground: hsl(0 0% 98%);
+  --sidebar-accent: hsl(125 100% 95%);
+  --sidebar-accent-foreground: hsl(125 100% 10%);
+  --sidebar-border: hsl(240 5.9% 90%);
+  --sidebar-ring: hsl(125 100% 35%);
+
+  /* Reset custom extras */
+  --primary-hover: hsl(125 100% 28%);
+  --secondary-hover: hsl(240 4.8% 90%);
+  --destructive-hover: hsl(0 84.2% 50%);
+  --muted-2: hsl(240 5.9% 90%);
+  --background-1: hsl(240 4.8% 95.9%);
+
+  /* Semantic */
+  --warning: hsl(38 92% 50%);
+  --warning-foreground: hsl(32 81% 29%);
+  --warning-background: hsl(48 96% 89%);
+  --warning-border: hsl(48 96% 89%);
+  --success: hsl(125 100% 35%);
+  --success-background: hsl(125 100% 95%);
+  --success-border: hsl(125 80% 85%);
+  --error: hsl(0 84.2% 60.2%);
+  --info: hsl(217 91% 60%);
+}
+
+/* KPI grid — responsive with gap-based dividers */
+[data-ds-v2] .kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: #F0EFEC;
+}
+
+[data-ds-v2] .kpi-grid > * {
+  background: white;
+}
+
+@media (min-width: 640px) {
+  [data-ds-v2] .kpi-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  [data-ds-v2] .kpi-grid {
+    grid-template-columns: none;
+    display: flex;
+    gap: 0;
+    background: transparent;
+  }
+  [data-ds-v2] .kpi-grid > * {
+    flex: 1;
+    border-left: 1px solid #F0EFEC;
+  }
+  [data-ds-v2] .kpi-grid > *:first-child {
+    border-left: none;
+  }
+}
+
+/* Entrance animations */
+@keyframes ds-fade-up {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes ds-bar-grow-x {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+@keyframes ds-bar-grow-y {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+[data-ds-v2] .anim-fade-up {
+  animation: ds-fade-up 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+[data-ds-v2] .anim-bar-x {
+  transform-box: fill-box;
+  transform-origin: left center;
+  animation: ds-bar-grow-x 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+[data-ds-v2] .anim-bar-y {
+  transform-box: fill-box;
+  transform-origin: center bottom;
+  animation: ds-bar-grow-y 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes ds-radar-in {
+  from { opacity: 0; transform: scale(0); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+[data-ds-v2] .anim-radar {
+  transform-box: fill-box;
+  transform-origin: center center;
+  animation: ds-radar-in 0.7s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes ds-line-draw {
+  from { stroke-dashoffset: var(--line-length); }
+  to   { stroke-dashoffset: 0; }
+}
+
+[data-ds-v2] .anim-line-draw {
+  animation: ds-line-draw 1s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes ds-dot-in {
+  from { r: 0; opacity: 0; }
+  to   { opacity: 1; }
+}
+
+[data-ds-v2] .anim-dot {
+  animation: ds-dot-in 0.3s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes ds-progress-x {
+  from { width: 0; }
+}
+
+[data-ds-v2] .anim-progress {
+  animation: ds-progress-x 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}

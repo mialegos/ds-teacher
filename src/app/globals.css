@@ -1,0 +1,486 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/* ================================================================
+   Font: Struve
+   ================================================================ */
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-Light.otf") format("opentype");
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-LightSlanted.otf") format("opentype");
+  font-weight: 300;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-Slanted.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-Medium.otf") format("opentype");
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-MediumSlanted.otf") format("opentype");
+  font-weight: 500;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-Semibold.otf") format("opentype");
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-SemiboldSlanted.otf") format("opentype");
+  font-weight: 600;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-Bold.otf") format("opentype");
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Struve";
+  src: url("/fonts/struve/Struve-BoldSlanted.otf") format("opentype");
+  font-weight: 700;
+  font-style: italic;
+  font-display: swap;
+}
+
+/* ================================================================
+   Theme: Tailwind utility mapping
+   ================================================================ */
+
+@theme inline {
+  --font-sans: "Struve", system-ui, -apple-system, sans-serif;
+
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --radius-2xl: calc(var(--radius) + 8px);
+
+  /* Core shadcn tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Charts */
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+
+  /* Sidebar */
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+
+  /* Muted 2 (darker muted for inactive indicators) */
+  --color-muted-2: var(--muted-2);
+
+  /* Semantic */
+  --color-warning: var(--warning);
+  --color-warning-foreground: var(--warning-foreground);
+  --color-warning-background: var(--warning-background);
+  --color-warning-border: var(--warning-border);
+  --color-success-background: var(--success-background);
+  --color-success-border: var(--success-border);
+
+  /* Sidebar icon backgrounds */
+  --color-sidebar-icon-bg-1: var(--sidebar-icon-bg-1);
+  --color-sidebar-icon-bg-2: var(--sidebar-icon-bg-2);
+  --color-sidebar-icon-bg-3: var(--sidebar-icon-bg-3);
+  --color-sidebar-icon-bg-4: var(--sidebar-icon-bg-4);
+
+  /* Extra background */
+  --color-background-1: var(--background-1);
+
+  /* Edtech brand palette — Green UI */
+  --color-green-ui-50: var(--green-ui-50);
+  --color-green-ui-100: var(--green-ui-100);
+  --color-green-ui-200: var(--green-ui-200);
+  --color-green-ui-300: var(--green-ui-300);
+  --color-green-ui-400: var(--green-ui-400);
+  --color-green-ui-500: var(--green-ui-500);
+  --color-green-ui-600: var(--green-ui-600);
+  --color-green-ui-700: var(--green-ui-700);
+  --color-green-ui-800: var(--green-ui-800);
+  --color-green-ui-900: var(--green-ui-900);
+
+  /* Edtech brand palette — Light Green Marketing */
+  --color-green-marketing-50: var(--green-marketing-50);
+  --color-green-marketing-100: var(--green-marketing-100);
+  --color-green-marketing-200: var(--green-marketing-200);
+  --color-green-marketing-300: var(--green-marketing-300);
+  --color-green-marketing-400: var(--green-marketing-400);
+  --color-green-marketing-500: var(--green-marketing-500);
+  --color-green-marketing-600: var(--green-marketing-600);
+  --color-green-marketing-700: var(--green-marketing-700);
+  --color-green-marketing-800: var(--green-marketing-800);
+  --color-green-marketing-900: var(--green-marketing-900);
+
+  /* Edtech brand palette — Blue */
+  --color-edtech-blue-50: var(--edtech-blue-50);
+  --color-edtech-blue-100: var(--edtech-blue-100);
+  --color-edtech-blue-200: var(--edtech-blue-200);
+  --color-edtech-blue-300: var(--edtech-blue-300);
+  --color-edtech-blue-400: var(--edtech-blue-400);
+  --color-edtech-blue-500: var(--edtech-blue-500);
+  --color-edtech-blue-600: var(--edtech-blue-600);
+  --color-edtech-blue-700: var(--edtech-blue-700);
+  --color-edtech-blue-800: var(--edtech-blue-800);
+  --color-edtech-blue-900: var(--edtech-blue-900);
+
+  /* Edtech brand palette — Red */
+  --color-edtech-red-50: var(--edtech-red-50);
+  --color-edtech-red-100: var(--edtech-red-100);
+  --color-edtech-red-200: var(--edtech-red-200);
+  --color-edtech-red-300: var(--edtech-red-300);
+  --color-edtech-red-400: var(--edtech-red-400);
+  --color-edtech-red-500: var(--edtech-red-500);
+  --color-edtech-red-600: var(--edtech-red-600);
+  --color-edtech-red-700: var(--edtech-red-700);
+  --color-edtech-red-800: var(--edtech-red-800);
+  --color-edtech-red-900: var(--edtech-red-900);
+
+  /* Edtech brand palette — Orange */
+  --color-edtech-orange-50: var(--edtech-orange-50);
+  --color-edtech-orange-100: var(--edtech-orange-100);
+  --color-edtech-orange-200: var(--edtech-orange-200);
+  --color-edtech-orange-300: var(--edtech-orange-300);
+  --color-edtech-orange-400: var(--edtech-orange-400);
+  --color-edtech-orange-500: var(--edtech-orange-500);
+  --color-edtech-orange-600: var(--edtech-orange-600);
+  --color-edtech-orange-700: var(--edtech-orange-700);
+  --color-edtech-orange-800: var(--edtech-orange-800);
+  --color-edtech-orange-900: var(--edtech-orange-900);
+
+  /* Edtech brand palette — Purple */
+  --color-edtech-purple-50: var(--edtech-purple-50);
+  --color-edtech-purple-100: var(--edtech-purple-100);
+  --color-edtech-purple-200: var(--edtech-purple-200);
+  --color-edtech-purple-300: var(--edtech-purple-300);
+  --color-edtech-purple-400: var(--edtech-purple-400);
+  --color-edtech-purple-500: var(--edtech-purple-500);
+  --color-edtech-purple-600: var(--edtech-purple-600);
+  --color-edtech-purple-700: var(--edtech-purple-700);
+  --color-edtech-purple-800: var(--edtech-purple-800);
+  --color-edtech-purple-900: var(--edtech-purple-900);
+
+  /* Edtech brand palette — Yellow */
+  --color-edtech-yellow-50: var(--edtech-yellow-50);
+  --color-edtech-yellow-100: var(--edtech-yellow-100);
+  --color-edtech-yellow-200: var(--edtech-yellow-200);
+  --color-edtech-yellow-300: var(--edtech-yellow-300);
+  --color-edtech-yellow-400: var(--edtech-yellow-400);
+  --color-edtech-yellow-500: var(--edtech-yellow-500);
+  --color-edtech-yellow-600: var(--edtech-yellow-600);
+  --color-edtech-yellow-700: var(--edtech-yellow-700);
+  --color-edtech-yellow-800: var(--edtech-yellow-800);
+  --color-edtech-yellow-900: var(--edtech-yellow-900);
+
+  /* Base version compatibility aliases */
+  --color-primary-hover: var(--primary-hover);
+  --color-secondary-hover: var(--secondary-hover);
+  --color-destructive-hover: var(--destructive-hover);
+  --color-surface: var(--background);
+  --color-surface-hover: var(--accent);
+  --color-surface-muted: var(--muted);
+  --color-border-focus: var(--ring);
+  --color-text: var(--foreground);
+  --color-text-muted: var(--muted-foreground);
+  --color-text-placeholder: var(--muted-foreground);
+  --color-success: var(--success);
+  --color-error: var(--error);
+  --color-info: var(--info);
+}
+
+/* ================================================================
+   Light mode (default) — values from Figma "2. Theme"
+   ================================================================ */
+
+:root {
+  --radius: 0.5rem;
+
+  /* Core */
+  --background: #ffffff;
+  --foreground: #0a0a0a;
+  --card: #ffffff;
+  --card-foreground: #0a0a0a;
+  --popover: #ffffff;
+  --popover-foreground: #0a0a0a;
+  --primary: #00cc00;
+  --primary-foreground: #fafafa;
+  --primary-hover: #00a300;
+  --secondary: #f5f5f5;
+  --secondary-foreground: #171717;
+  --secondary-hover: #e5e5e5;
+  --muted: #f5f5f5;
+  --muted-2: #e0e0e0;
+  --muted-foreground: #737373;
+  --accent: #f5f5f5;
+  --accent-foreground: #171717;
+  --destructive: #ff000b;
+  --destructive-foreground: #fff2f1;
+  --destructive-hover: #d60009;
+  --border: #e5e5e5;
+  --input: #e5e5e5;
+  --ring: #a3a3a3;
+
+  /* Extra background */
+  --background-1: #f8f6f3;
+
+  /* Charts — Edtech brand colors */
+  --chart-1: #ff8f00;
+  --chart-2: #0089ff;
+  --chart-3: #c952de;
+  --chart-4: #f5b800;
+  --chart-5: #ff000b;
+
+  /* Sidebar */
+  --sidebar: #f8f6f3;
+  --sidebar-foreground: #0a0a0a;
+  --sidebar-primary: #171717;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #f5f5f5;
+  --sidebar-accent-foreground: #171717;
+  --sidebar-border: #e5e5e5;
+  --sidebar-ring: #a3a3a3;
+
+  /* Sidebar icon backgrounds */
+  --sidebar-icon-bg-1: #00cc00;
+  --sidebar-icon-bg-2: #f5b800;
+  --sidebar-icon-bg-3: #0089ff;
+  --sidebar-icon-bg-4: #c952de;
+
+  /* Semantic */
+  --warning: #ff8f00;
+  --warning-foreground: #78350f;
+  --warning-background: #fffbeb;
+  --warning-border: #fde68a;
+  --success: #00cc00;
+  --success-background: #edfce2;
+  --success-border: #d9f7c4;
+  --error: #ff000b;
+  --info: #0089ff;
+
+  /* ============================================================
+     Edtech brand palette — Green UI
+     ============================================================ */
+  --green-ui-50: #edfce2;
+  --green-ui-100: #d9f7c4;
+  --green-ui-200: #b7f299;
+  --green-ui-300: #8df26d;
+  --green-ui-400: #5ee34d;
+  --green-ui-500: #00cc00;
+  --green-ui-600: #00a300;
+  --green-ui-700: #008000;
+  --green-ui-800: #005c00;
+  --green-ui-900: #003300;
+
+  /* Light Green Marketing */
+  --green-marketing-50: #f4fbe6;
+  --green-marketing-100: #efffcc;
+  --green-marketing-200: #e1ff99;
+  --green-marketing-300: #d3ff66;
+  --green-marketing-400: #c6ff33;
+  --green-marketing-500: #c3ff01;
+  --green-marketing-600: #9ccb01;
+  --green-marketing-700: #769901;
+  --green-marketing-800: #506801;
+  --green-marketing-900: #2a3700;
+
+  /* Blue */
+  --edtech-blue-50: #e6f5ff;
+  --edtech-blue-100: #ccebff;
+  --edtech-blue-200: #99d6ff;
+  --edtech-blue-300: #66c2ff;
+  --edtech-blue-400: #33adff;
+  --edtech-blue-500: #0089ff;
+  --edtech-blue-600: #006ecc;
+  --edtech-blue-700: #005299;
+  --edtech-blue-800: #003766;
+  --edtech-blue-900: #001b33;
+
+  /* Red */
+  --edtech-red-50: #fff2f1;
+  --edtech-red-100: #ffe4e1;
+  --edtech-red-200: #ffc7c2;
+  --edtech-red-300: #ff9b94;
+  --edtech-red-400: #ff5c52;
+  --edtech-red-500: #ff000b;
+  --edtech-red-600: #d60009;
+  --edtech-red-700: #ad0007;
+  --edtech-red-800: #850006;
+  --edtech-red-900: #5c0004;
+
+  /* Orange */
+  --edtech-orange-50: #fff6e6;
+  --edtech-orange-100: #ffedcc;
+  --edtech-orange-200: #ffdb99;
+  --edtech-orange-300: #ffc966;
+  --edtech-orange-400: #ffb733;
+  --edtech-orange-500: #ff8f00;
+  --edtech-orange-600: #cc7200;
+  --edtech-orange-700: #995600;
+  --edtech-orange-800: #663900;
+  --edtech-orange-900: #331d00;
+
+  /* Purple */
+  --edtech-purple-50: #f9f0fb;
+  --edtech-purple-100: #f4e1f8;
+  --edtech-purple-200: #e8c2f1;
+  --edtech-purple-300: #dda4ea;
+  --edtech-purple-400: #d385e4;
+  --edtech-purple-500: #c952de;
+  --edtech-purple-600: #a142b2;
+  --edtech-purple-700: #793185;
+  --edtech-purple-800: #502159;
+  --edtech-purple-900: #28102c;
+
+  /* Yellow */
+  --edtech-yellow-50: #fffbe6;
+  --edtech-yellow-100: #fff4cc;
+  --edtech-yellow-200: #ffe799;
+  --edtech-yellow-300: #ffda66;
+  --edtech-yellow-400: #ffc933;
+  --edtech-yellow-500: #f5b800;
+  --edtech-yellow-600: #cc9900;
+  --edtech-yellow-700: #a37a00;
+  --edtech-yellow-800: #7a5c00;
+  --edtech-yellow-900: #523d00;
+}
+
+/* ================================================================
+   Dark mode — values from Figma "2. Theme" dark variant
+   ================================================================ */
+
+.dark {
+  --background: #0a0a0a;
+  --foreground: #fafafa;
+  --card: #171717;
+  --card-foreground: #fafafa;
+  --popover: #262626;
+  --popover-foreground: #fafafa;
+  --primary: #00a300;
+  --primary-foreground: #171717;
+  --primary-hover: #008000;
+  --secondary: #262626;
+  --secondary-foreground: #fafafa;
+  --secondary-hover: #404040;
+  --muted: #262626;
+  --muted-2: #3a3a3a;
+  --muted-foreground: #a3a3a3;
+  --accent: #404040;
+  --accent-foreground: #fafafa;
+  --destructive: #d60009;
+  --destructive-foreground: #850006;
+  --destructive-hover: #ad0007;
+  --border: rgba(255, 255, 255, 0.1);
+  --input: rgba(255, 255, 255, 0.15);
+  --ring: #737373;
+
+  --background-1: #211f1e;
+
+  --chart-1: #cc7200;
+  --chart-2: #006ecc;
+  --chart-3: #a142b2;
+  --chart-4: #cc9900;
+  --chart-5: #d60009;
+
+  --sidebar: #211f1e;
+  --sidebar-foreground: #fafafa;
+  --sidebar-primary: #1d4ed8;
+  --sidebar-primary-foreground: #fafafa;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #fafafa;
+  --sidebar-border: rgba(255, 255, 255, 0.1);
+  --sidebar-ring: #525252;
+
+  --warning: #ff8f00;
+  --warning-foreground: #fffbeb;
+  --warning-background: #451a03;
+  --warning-border: #78350f;
+  --success: #00a300;
+  --success-background: #005c00;
+  --success-border: #004400;
+  --error: #d60009;
+  --info: #006ecc;
+}
+
+/* ================================================================
+   Base layer
+   ================================================================ */
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
