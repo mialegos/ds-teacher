@@ -5,6 +5,7 @@ export function generateStaticParams() {
   return TEAM.map((m) => ({ id: String(m.id) }));
 }
 
-export default function Page() {
-  return <TeamMemberDetailPage />;
+export default async function Page({ params }: { params: Promise<{ id: string }> }) {
+  const { id } = await params;
+  return <TeamMemberDetailPage id={id} />;
 }

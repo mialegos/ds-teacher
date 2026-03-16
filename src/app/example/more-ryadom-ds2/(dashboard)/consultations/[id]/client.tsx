@@ -1,6 +1,5 @@
 "use client";
 
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
   Avatar,
@@ -30,8 +29,7 @@ function ScoreDonut({ score, maxScore, size = 64 }: { score: number; maxScore: n
   );
 }
 
-export default function ConsultationDetailPage() {
-  const { id } = useParams<{ id: string }>();
+export default function ConsultationDetailPage({ id }: { id: string }) {
   const c = CONSULTATIONS.find((x) => x.id === id);
   const detail = id ? CONSULTATION_DETAILS[id] : undefined;
 

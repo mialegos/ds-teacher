@@ -13,8 +13,7 @@ const navSections: { title: string | null; items: NavItem[] }[] = [
   {
     title: "Examples",
     items: [
-      { href: "/example/lesson-report", label: "Описание урока", external: true },
-      { href: "/example/more-ryadom-ds2", label: "Море рядом (DS v2)", external: true },
+      { href: "/example/more-ryadom-ds2", label: "Море рядом", external: true },
     ],
   },
   {

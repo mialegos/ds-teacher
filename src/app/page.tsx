@@ -2,24 +2,9 @@ import Link from "next/link";
 
 const sections = [
   {
-    title: "Base",
-    description: "Кастомные компоненты на Tailwind CSS без внешних UI-библиотек",
-    href: "/base/ui-kit",
-  },
-  {
     title: "Shadcn",
     description: "Компоненты на базе Tailwind CSS + shadcn/ui",
     href: "/shadcn/ui-kit",
-  },
-  {
-    title: "Shadcn v2 (DS v2)",
-    description: "Доработанная дизайн-система с зелёной темой, сайдбаром и анимациями",
-    href: "/example/more-ryadom-ds2",
-  },
-  {
-    title: "Examples",
-    description: "Примеры готовых страниц: дашборд, консультации, команда, варианты",
-    href: "/example/more-ryadom-ds2",
   },
 ];
 

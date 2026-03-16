@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { useParams } from "next/navigation";
 import Link from "next/link";
 import {
   Avatar,
@@ -262,8 +261,7 @@ function ScoreLineChart({ data }: { data: { month: string; score: number }[] }) 
   );
 }
 
-export default function TeamMemberDetailPage() {
-  const { id } = useParams<{ id: string }>();
+export default function TeamMemberDetailPage({ id }: { id: string }) {
   const member = TEAM.find((m) => m.id === Number(id));
   const detail = member ? TEAM_DETAILS[member.id] : undefined;
   const memberConsultations = member ? CONSULTATIONS.filter((c) => c.managerId === member.id) : [];
