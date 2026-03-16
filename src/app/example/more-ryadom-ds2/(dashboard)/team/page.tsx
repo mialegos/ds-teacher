@@ -44,7 +44,7 @@ function TeamCard({ member }: { member: TeamMember }) {
   const detail = TEAM_DETAILS[member.id];
 
   return (
-    <Link href={`/team/${member.id}`} className="block rounded-xl border border-border bg-white p-5 transition-shadow hover:shadow-md">
+    <Link href={`/example/more-ryadom-ds2/team/${member.id}`} className="block rounded-xl border border-border bg-white p-5 transition-shadow hover:shadow-md">
       <div className="flex items-start justify-between">
         <div className="min-w-0">
           <div className="flex items-start gap-3">

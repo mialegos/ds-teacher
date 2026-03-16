@@ -244,11 +244,11 @@ function TopEmployees() {
     <div className="p-5">
       <div className="mb-3 flex items-baseline justify-between">
         <h3 className="text-lg font-medium">Лучшие сотрудники</h3>
-        <Link href="/team" className="text-sm text-muted-foreground hover:text-foreground">Все</Link>
+        <Link href="/example/more-ryadom-ds2/team" className="text-sm text-muted-foreground hover:text-foreground">Все</Link>
       </div>
       <div className="flex flex-col">
         {sorted.map((m, i) => (
-          <Link key={m.id} href={`/team/${m.id}`} className="-mx-5 flex items-center gap-3 border-b border-border/60 px-5 py-2.5 transition-colors hover:bg-black/[0.06] last:border-0">
+          <Link key={m.id} href={`/example/more-ryadom-ds2/team/${m.id}`} className="-mx-5 flex items-center gap-3 border-b border-border/60 px-5 py-2.5 transition-colors hover:bg-black/[0.06] last:border-0">
             <Avatar initials={m.initials} size={28} />
             <div className="min-w-0 flex-1"><p className="truncate text-sm font-medium leading-tight">{m.name}</p><p className="text-sm text-muted-foreground">{m.role}</p></div>
             <span className="w-16 shrink-0 text-right text-xs tabular-nums text-muted-foreground">{m.revenue}</span>
@@ -267,11 +267,11 @@ function RecentConsultations() {
     <div className="p-5">
       <div className="mb-3 flex items-baseline justify-between">
         <h3 className="text-lg font-medium">Последние консультации</h3>
-        <Link href="/consultations" className="text-sm text-muted-foreground hover:text-foreground">Все</Link>
+        <Link href="/example/more-ryadom-ds2/consultations" className="text-sm text-muted-foreground hover:text-foreground">Все</Link>
       </div>
       <div className="flex flex-col">
         {recent.map((c) => (
-          <Link key={c.id} href={`/consultations/${c.id}`} className="-mx-5 flex items-center gap-3 border-b border-border/60 px-5 py-2.5 transition-colors hover:bg-black/[0.06] last:border-0 sm:gap-5">
+          <Link key={c.id} href={`/example/more-ryadom-ds2/consultations/${c.id}`} className="-mx-5 flex items-center gap-3 border-b border-border/60 px-5 py-2.5 transition-colors hover:bg-black/[0.06] last:border-0 sm:gap-5">
             <div className="min-w-0 flex-1">
               <p className="truncate text-sm font-medium leading-tight">{c.topic}</p>
               <p className="text-sm text-muted-foreground">{c.destination} · {c.duration}</p>

@@ -94,7 +94,7 @@ export default function ConsultationsPage() {
         {filtered.map((c, i) => (
           <Link
             key={c.id}
-            href={`/consultations/${c.id}`}
+            href={`/example/more-ryadom-ds2/consultations/${c.id}`}
             className={`block px-4 py-3 transition-colors hover:bg-black/[0.06] sm:px-5 ${i > 0 ? "border-t border-border/40" : ""}`}
           >
             {/* Mobile layout */}

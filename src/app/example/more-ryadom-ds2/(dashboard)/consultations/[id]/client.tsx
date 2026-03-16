@@ -39,14 +39,14 @@ export default function ConsultationDetailPage({ id }: { id: string }) {
     <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 md:px-8 md:py-8">
       {/* Breadcrumb */}
       <div className="anim-fade-up mb-4 text-sm text-muted-foreground">
-        <Link href="/consultations" className="hover:text-foreground">Консультации</Link>
+        <Link href="/example/more-ryadom-ds2/consultations" className="hover:text-foreground">Консультации</Link>
         <span className="mx-1.5">›</span>
         <span>{c.topic}</span>
       </div>
 
       {/* Header */}
       <div className="anim-fade-up mb-6 flex items-start gap-4" style={{ animationDelay: "40ms" }}>
-        <Link href={`/team/${c.managerId}`} className="shrink-0">
+        <Link href={`/example/more-ryadom-ds2/team/${c.managerId}`} className="shrink-0">
           <Avatar initials={c.managerInitials} size={48} />
         </Link>
         <div className="min-w-0 flex-1">
@@ -57,7 +57,7 @@ export default function ConsultationDetailPage({ id }: { id: string }) {
             }`}>{c.result}</span>
           </div>
           <div className="mt-1 flex items-center gap-2 text-sm text-muted-foreground">
-            <Link href={`/team/${c.managerId}`} className="hover:text-foreground">
+            <Link href={`/example/more-ryadom-ds2/team/${c.managerId}`} className="hover:text-foreground">
               {c.managerName} ({c.managerRole})
             </Link>
             <span>·</span>

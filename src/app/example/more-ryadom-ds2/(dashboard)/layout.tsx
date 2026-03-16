@@ -7,10 +7,12 @@ import { Sheet, SheetContent, SheetTitle } from "@/components/shadcn/sheet";
 import { VisuallyHidden } from "radix-ui";
 import "../theme.css";
 
+const BASE = "/example/more-ryadom-ds2";
+
 const NAV_MAIN = [
-  { href: "/", label: "Дашборд", icon: BarIcon, exact: true },
-  { href: "/consultations", label: "Консультации", icon: ChatIcon },
-  { href: "/team", label: "Команда", icon: UsersIcon },
+  { href: `${BASE}`, label: "Дашборд", icon: BarIcon, exact: true },
+  { href: `${BASE}/consultations`, label: "Консультации", icon: ChatIcon },
+  { href: `${BASE}/team`, label: "Команда", icon: UsersIcon },
 ];
 
 function NavItems({ pathname, onNavigate }: { pathname: string; onNavigate?: () => void }) {

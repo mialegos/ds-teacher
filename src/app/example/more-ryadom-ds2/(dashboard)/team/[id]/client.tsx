@@ -272,7 +272,7 @@ export default function TeamMemberDetailPage({ id }: { id: string }) {
     <div className="px-4 py-6 sm:px-6 md:px-8 md:py-8">
       {/* Breadcrumb */}
       <div className="anim-fade-up mb-4 text-sm text-muted-foreground">
-        <Link href="/team" className="hover:text-foreground">Команда</Link>
+        <Link href="/example/more-ryadom-ds2/team" className="hover:text-foreground">Команда</Link>
         <span className="mx-1.5">›</span>
         <span>{member.name}</span>
       </div>
@@ -368,7 +368,7 @@ export default function TeamMemberDetailPage({ id }: { id: string }) {
                 {memberConsultations.map((c, i) => (
                   <Link
                     key={c.id}
-                    href={`/consultations/${c.id}`}
+                    href={`/example/more-ryadom-ds2/consultations/${c.id}`}
                     className={`-mx-5 flex items-center gap-4 px-5 py-2.5 transition-colors hover:bg-black/[0.06] ${i < memberConsultations.length - 1 ? "border-b border-border/40" : ""}`}
                   >
                     <div className="min-w-0 flex-1">
