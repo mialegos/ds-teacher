@@ -1,5 +1,12 @@
-import { redirect } from "next/navigation";
+"use client";
+
+import { useEffect } from "react";
+import { useRouter } from "next/navigation";
 
 export default function HomePage() {
-  redirect("/shadcn/ui-kit");
+  const router = useRouter();
+  useEffect(() => {
+    router.replace("/shadcn/ui-kit");
+  }, [router]);
+  return null;
 }
